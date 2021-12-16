@@ -1,0 +1,67 @@
+$date
+	Thu Dec 16 19:19:17 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module top $end
+$scope module f1 $end
+$var wire 1 ! a $end
+$var wire 1 " b $end
+$var wire 1 # c1 $end
+$var wire 1 $ c_in $end
+$var wire 1 % c_out $end
+$var wire 1 & s1 $end
+$var wire 1 ' s2 $end
+$var wire 1 ( sum $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+0!
+$end
+#5
+1(
+1&
+1!
+#10
+0(
+1%
+0&
+1#
+1"
+#15
+0%
+1(
+0#
+1$
+0"
+0!
+#20
+1%
+1'
+0(
+1&
+1!
+#25
+1"
+0!
+#30
+0'
+1(
+1%
+0&
+1#
+1!
+#35
