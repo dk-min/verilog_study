@@ -1,0 +1,79 @@
+$date
+	Thu Dec 16 13:08:58 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module top $end
+$scope module m1 $end
+$var wire 1 ! i0 $end
+$var wire 1 " i1 $end
+$var wire 1 # i2 $end
+$var wire 1 $ i3 $end
+$var wire 1 % out $end
+$var wire 1 & s0 $end
+$var wire 1 ' s0n $end
+$var wire 1 ( s1 $end
+$var wire 1 ) s1n $end
+$var wire 1 * y0 $end
+$var wire 1 + y1 $end
+$var wire 1 , y2 $end
+$var wire 1 - y3 $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0-
+0,
+0+
+1*
+1)
+0(
+1'
+0&
+1%
+0$
+0#
+0"
+1!
+$end
+#1
+0%
+0*
+0'
+1&
+#2
+1%
+1+
+1"
+0!
+#3
+0%
+0)
+1'
+0+
+1(
+0&
+#4
+1%
+1,
+1#
+0"
+#5
+0%
+0,
+0'
+1&
+#6
+1)
+1'
+0(
+0&
+#7
+1%
+1*
+1!
