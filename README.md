@@ -12,3 +12,17 @@ IcarusVerilog
 
 ## 기타 
 GTKwave로 파형 볼 수 있도록 코드 작성
+
+## How to Build
+``` 
+iverilog -o output.vvp source1.v source2.v sourcen.v
+vvp output.vvp
+```
+source files should be included test bench file
+vvp shows test file results.
+
+it can run by gtkwave if you want to verificate waveform.
+```
+gtkwave blahblah.vcd
+```
+vcd filename can be found in test bench file(usally named '_tb' in the end)
