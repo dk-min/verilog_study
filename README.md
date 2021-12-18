@@ -18,8 +18,8 @@ GTKwave로 파형 볼 수 있도록 코드 작성
 iverilog -o output.vvp source1.v source2.v sourcen.v
 vvp output.vvp
 ```
-source files should be included test bench file
-vvp shows test file results.
+source files should be included test bench file   
+instruction of 'vvp' shows test bench file results.
 
 it can run by gtkwave if you want to verificate waveform.
 ```
