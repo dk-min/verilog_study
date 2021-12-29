@@ -11,7 +11,8 @@ IcarusVerilog
 
 
 ## 기타 
-GTKwave로 파형 볼 수 있도록 코드 작성
+GTKwave로 파형 볼 수 있도록 코드 작성   
+SPI / AXI / Test Pattern Generator 같은 코드는 vivado 자료를 업로드 함
 
 ## How to Build
 ``` 
