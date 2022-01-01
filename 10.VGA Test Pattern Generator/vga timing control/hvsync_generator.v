@@ -69,7 +69,7 @@ module hvsync_generator(
     always @(posedge clk)
     begin
         vga_HS = !((counterX > 1280 + 110) && (counterX < 1280 + 110 + 40));
-        vga_VS = !((counterY > 720 + 5) && (counterY < 1280 + 110 + 5 + 5));
+        vga_VS = !((counterY > 720 + 5) && (counterY < 720 + 5 + 5));
     end
 
     assign vga_h_sync = ~vga_HS;
