@@ -70,7 +70,7 @@ module gen_color(
                     frame_data <= frame_data + 1;
                     line_counter <= line_counter + 1;    
                 end
-                if(line_counter == `linesize - 1)
+                if(line_counter == `linesize - 2)
                 begin
                     line_counter <= 0;
                     state <= END_LINE;
