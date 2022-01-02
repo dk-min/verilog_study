@@ -19,15 +19,17 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 `define linesize 1280
-`define framesize 1280*720
-module gen_color(
+`define yline 720
+module axi_gen_color(
     input clk,
     input resetn,
     input i_ready,
     output reg [23:0] color, // 8/8/8 bit color
     output reg o_valid,
     output reg o_start,
-    output reg o_last
+    output reg o_last,
+    output y_counter,
+    output line_counter
     );
 
     reg [1:0] state;
@@ -36,7 +38,7 @@ module gen_color(
                 SEND_DATA = 'd1,
                 END_LINE = 'd2;
 
-    integer line_counter, frame_data;
+    integer line_counter, y_counter;
 
     always @(*) begin
         if (line_counter < 427) 
@@ -55,7 +57,7 @@ module gen_color(
             o_start <= 0;
             o_last <= 0;
             line_counter <= 0;
-            frame_data <= 0;
+            y_counter <= 0;
         end
         case (state)
             IDLE : begin
@@ -64,30 +66,30 @@ module gen_color(
                 state <= SEND_DATA;
             end
             SEND_DATA : begin
-                if(i_ready)
+                o_valid <= 1;
+                if(i_ready & o_valid)
                 begin
                     o_start <= 0;
-                    frame_data <= frame_data + 1;
-                    line_counter <= line_counter + 1;    
-                end
-                if(line_counter == `linesize - 2)
-                begin
-                    line_counter <= 0;
-                    state <= END_LINE;
-                    o_last <= 1;
+                    line_counter <= line_counter + 1;       
+                    if(line_counter == `linesize - 2)
+                    begin
+                        line_counter <= line_counter + 1;
+                        o_last <= 1;
+                        state <= END_LINE;
+                    end
                 end
             end
             END_LINE : begin
-                if(i_ready)
+                if(i_ready & o_valid)
                 begin
+                    y_counter <= y_counter + 1;
                     o_last <= 0;
                     line_counter <= 0;
-                    frame_data <= frame_data + 1;
-                end
-                if (frame_data == `framesize - 1) begin
-                    state <= IDLE;
                     o_valid <= 0;
-                    frame_data <= 0;
+                    if (y_counter == `yline - 1) begin
+                        state <= IDLE;
+                        y_counter <= 0;
+                    end
                 end
                 else
                 begin
