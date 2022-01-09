@@ -1,10 +1,11 @@
-# verilog study project
-verilog를 공부하고 테스트하기 목적으로 작성한 프로젝트입니다.
+# Verilog Study Project
+Verilog를 공부하고 테스트하기 목적으로 작성한 프로젝트입니다.
 
 ## 개발환경   
 WINDOWS 10 64 BIT   
 VSCODE     
-IcarusVerilog
+IcarusVerilog    
+Vivado 2018.2 (10번 프로젝트 이후에 적용)
         
 ## 참고 교재
 [verilog hdl](https://book.naver.com/bookdb/book_detail.nhn?bid=1912296 "verilog hdl 교재")
