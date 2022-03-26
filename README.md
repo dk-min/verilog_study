@@ -7,9 +7,10 @@ VSCODE
 IcarusVerilog    
 Vivado 2018.2 (10번 프로젝트 이후에 적용)
         
-## 참고 교재
-[verilog hdl](https://book.naver.com/bookdb/book_detail.nhn?bid=1912296 "verilog hdl 교재")
+## 참고 교재 or Link
+[verilog hdl](https://book.naver.com/bookdb/book_detail.nhn?bid=1912296 "verilog hdl 교재")   
 
+[Nandland](https://www.nandland.com/verilog/tutorials/index.html "Nandland")
 
 ## 기타 
 GTKwave로 파형 볼 수 있도록 코드 작성   
