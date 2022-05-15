@@ -13,7 +13,6 @@ module UART_TB ();
   // 25000000 / 115200 = 217 Clocks Per Bit.
   parameter c_CLOCK_PERIOD_NS = 40;
   parameter c_CLKS_PER_BIT    = 217;
-  parameter c_BIT_PERIOD      = 8600;
   
   reg r_Clock = 0;
   reg r_TX_DV = 0;
@@ -69,6 +68,6 @@ module UART_TB ();
     begin
       // Required to dump signals to EPWave
       $dumpfile("dump.vcd");
-      $dumpvars(0);
+      $dumpvars(0, UART_TB);
     end
 endmodule
