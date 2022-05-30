@@ -19,6 +19,8 @@ reg   PSEL;
 reg   PENABLE;
 reg   [31:00] PWDATA;
 wire  [31:00] PRDATA;
+wire  PREADY;
+wire  irqreq;
 
 reg [31:00] tmp_r;
 reg [31:00] tmp_w = 'hffff;
@@ -50,8 +52,11 @@ UART_REG duv
 	  .PSEL(PSEL),
 	  .PENABLE(PENABLE),
 	  .PWDATA(PWDATA),
-	  .PRDATA(PRDATA)
+	  .PRDATA(PRDATA),
+	  .PREADY(PREADY),
+    .irqreq(irqreq)
  );
+
   
 initial 
   begin

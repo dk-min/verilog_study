@@ -3,18 +3,33 @@ begin
     @(posedge PRESETn);
     @(posedge PCLK);
     @(posedge PCLK);
-    APB_WRITE(32'h0, 32'h1111); 
-    APB_WRITE(32'h4, 32'h2222); 
-    APB_WRITE(32'h8, 32'h3333); 
-    APB_WRITE(32'hc, 32'h4444); 
+    // APB_WRITE(32'h0, 32'h1111); 
+    APB_WRITE(32'h4, 32'h55);       // tdr 0x55 8bit 
+    APB_WRITE(32'h0, 32'h1);        // enable
+    APB_WRITE(32'h8, 32'h3333);     // meaning nothing
+    // APB_WRITE(32'hc, 32'h4444); 
+    @(posedge irqreq);
     APB_READ(32'h0, tmp_r);
     $display("status reg \t %08x", tmp_r);
     APB_READ(32'h4, tmp_r);
     $display("TDR reg \t %08x", tmp_r);
     APB_READ(32'h8, tmp_r);
     $display("RDR reg \t %08x", tmp_r);
-    APB_READ(32'hc, tmp_r);
-    $display("CPB reg \t %08x", tmp_r);
+    APB_READ(32'h0, tmp_r);
+    $display("status reg \t %08x", tmp_r);
+    
+    APB_WRITE(32'h4, 32'haa);       // tdr 0xaa 8bit 
+    @(posedge irqreq);
+    APB_READ(32'h0, tmp_r);
+    $display("status reg \t %08x", tmp_r);
+    APB_READ(32'h4, tmp_r);
+    $display("TDR reg \t %08x", tmp_r);
+    APB_READ(32'h8, tmp_r);
+    $display("RDR reg \t %08x", tmp_r);
+    APB_READ(32'h0, tmp_r);
+    $display("status reg \t %08x", tmp_r);
+    // APB_READ(32'hc, tmp_r);
+    // $display("CPB reg \t %08x", tmp_r);
     #10ns;
 end
 endtask
@@ -28,6 +43,7 @@ begin
     PWRITE  <= 1;
     @(posedge PCLK);
     PENABLE <= 1;
+    while(!PREADY)       @(posedge PCLK);
     @(posedge PCLK);
     PSEL    <= 0;
     PENABLE <= 0;
@@ -42,10 +58,10 @@ begin
     PWRITE  <= 0;
     @(posedge PCLK);
     PENABLE <= 1;
+    while(!PREADY)        @(posedge PCLK);
     @(posedge PCLK);    
     rdata   = PRDATA;
     PSEL    <= 0;
     PENABLE <= 0;
     end
 endtask
-
