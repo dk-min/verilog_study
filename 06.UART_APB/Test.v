@@ -1,6 +1,14 @@
-task Test;
+//////////////////////////////////////////////////////////////////////
+// Author:      Jasper Min
+//////////////////////////////////////////////////////////////////////
+// Description: This file is designed for APB Transaction.
+//              
+//              
+// 
+////////////////////////////////////////////////////////////////////// 
+
+task Test0;
 begin
-    @(posedge PRESETn);
     @(posedge PCLK);
     @(posedge PCLK);
     // APB_WRITE(32'h0, 32'h1111); 
@@ -18,6 +26,8 @@ begin
     APB_READ(32'h0, tmp_r);
     $display("status reg \t %08x", tmp_r);
     
+    
+    $display("write phase2");
     APB_WRITE(32'h4, 32'haa);       // tdr 0xaa 8bit 
     @(posedge irqreq);
     APB_READ(32'h0, tmp_r);
@@ -28,9 +38,40 @@ begin
     $display("RDR reg \t %08x", tmp_r);
     APB_READ(32'h0, tmp_r);
     $display("status reg \t %08x", tmp_r);
-    // APB_READ(32'hc, tmp_r);
-    // $display("CPB reg \t %08x", tmp_r);
-    #10ns;
+
+    APB_WRITE(32'h0, 32'h0);        // enable
+end
+endtask
+
+task Test1;
+begin
+    @(posedge PCLK);
+    @(posedge PCLK);
+    APB_WRITE(32'h0, 32'h1);        // enable
+    APB_WRITE(32'h4, 32'h11);       // tdr 0x11 8bit 
+    @(posedge irqreq);
+    APB_READ(32'h0, tmp_r);
+    $display("status reg \t %08x", tmp_r);
+    APB_READ(32'h4, tmp_r);
+    $display("TDR reg \t %08x", tmp_r);
+    APB_READ(32'h8, tmp_r);
+    $display("RDR reg \t %08x", tmp_r);
+    APB_READ(32'h0, tmp_r);
+    $display("status reg \t %08x", tmp_r);
+    
+    $display("write phase2");
+    APB_WRITE(32'h4, 32'hff);       // tdr 0xff 8bit 
+    @(posedge irqreq);
+    APB_READ(32'h0, tmp_r);
+    $display("status reg \t %08x", tmp_r);
+    APB_READ(32'h4, tmp_r);
+    $display("TDR reg \t %08x", tmp_r);
+    APB_READ(32'h8, tmp_r);
+    $display("RDR reg \t %08x", tmp_r);
+    APB_READ(32'h0, tmp_r);
+    $display("status reg \t %08x", tmp_r);
+
+    APB_WRITE(32'h0, 32'h0);        // enable
 end
 endtask
 

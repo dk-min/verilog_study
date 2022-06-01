@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////
 // Author:      Jasper Min
 //////////////////////////////////////////////////////////////////////
-// Description: This file designed for UART APB Testbench.  
+// Description: This file is designed for UART APB Testbench.  
 //              
 //              
 // 
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////// 
 
 `timescale 1ns/10ps
 
@@ -23,7 +23,6 @@ wire  PREADY;
 wire  irqreq;
 
 reg [31:00] tmp_r;
-reg [31:00] tmp_w = 'hffff;
 
 `include "Test.v"
 
@@ -38,8 +37,11 @@ initial begin
 end
 
 initial begin
-  $display("TEST CALL");
-  Test;
+  @(posedge PRESETn);
+  $display("TEST0 CALL");
+  Test0;
+  $display("\nTEST1 CALL");
+  Test1;
   $finish();
 end
 
